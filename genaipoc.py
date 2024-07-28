@@ -4,6 +4,9 @@ from langchain_groq import ChatGroq
 from langchain.schema import HumanMessage,SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st
+import preprocessing
+
+
 
 #initiaizing the output parser
 parser=StrOutputParser()
@@ -29,6 +32,12 @@ with col2:
 
 #if input text is provided by the user
 if submit_button and input_text:
+    
+    input_text1=preprocessing.spell_corrector(input_text)
+    input_text1=preprocessing.add_context(input_text1)
+    st.write(f"Given problem statement: {input_text}")
+    
+    
     #initializing the Chatgroq model with the specified model id and api key
     #here i am selecting the Gemma-2b-It
     model=ChatGroq(model="Gemma2-9b-It",groq_api_key=groq_api_key)
@@ -36,7 +45,7 @@ if submit_button and input_text:
     messages=[
     SystemMessage(content="Create sop for the given prompt"),
     # HumanMessage(content="Troubleshooting windows 11 installation in Virtual macahine")
-    HumanMessage(content=input_text)
+    HumanMessage(content=input_text1)
     ]
     # print(model.invoke(messages))
     #invoking the model
@@ -45,7 +54,7 @@ if submit_button and input_text:
     st.write(parser.invoke(result))
     
     
-    st.write("Input is taken")
+    
 
 
 
