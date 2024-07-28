@@ -1,0 +1,8 @@
+https://github.com/ollama/ollama
+
+Needs to be installed 
+Llama 3 (8B):
+Parameters: 8 billion
+Size: 4.7GB
+Command: ollama run llama3
+
