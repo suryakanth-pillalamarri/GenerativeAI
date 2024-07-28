@@ -5,8 +5,18 @@ from langchain.schema import HumanMessage,SystemMessage
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st
 import preprocessing
+from docx import Document
+from io import BytesIO
 
 
+
+def create_word_document(content):
+    doc=Document()
+    doc.add_paragraph(content)
+    buffer=BytesIO()
+    doc.save(buffer)
+    buffer.seek(0)
+    return(buffer)
 
 #initiaizing the output parser
 parser=StrOutputParser()
@@ -31,9 +41,10 @@ with col2:
 
 
 #if input text is provided by the user
-if submit_button and input_text:
-    
-    input_text1=preprocessing.spell_corrector(input_text)
+if submit_button and input_text:    
+    input_text1=preprocessing.remove_special_charaters(input_text)
+    input_text1=preprocessing.spell_corrector(input_text1)
+    # st.write(f"Given problem statement: {input_text1}")
     input_text1=preprocessing.add_context(input_text1)
     st.write(f"Given problem statement: {input_text}")
     
@@ -52,6 +63,16 @@ if submit_button and input_text:
     result=model.invoke(messages)
     #displaying the result using the Streamlit in the website
     st.write(parser.invoke(result))
+    # Creating a Word document
+    word_buffer = create_word_document(parser.invoke(result))
+    
+    # Providing a download link
+    st.download_button(
+        label="Download SOP as Word document",
+        data=word_buffer,
+        file_name="SOP.docx",
+        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    )
     
     
     
