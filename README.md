@@ -1,2 +1,2 @@
 # GenerativeAI
-Projects in genertive ai
+Pactice and projects in genertive ai
