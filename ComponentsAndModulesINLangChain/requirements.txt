@@ -11,3 +11,4 @@ ollama
 chromadb
 chroma-migrate
 faiss-cpu
+langchain_chroma
