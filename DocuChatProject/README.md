@@ -30,4 +30,30 @@ To build a simple chat application that reads a few documents and answers questi
 * Use Streamlit to create a chat interface that takes user input and displays the generated answer.
 * Use the retriever and generator functions to generate answers to user queries.
 
-**Example Code:**
+
+
+
+
+
+Suggested Chatbot Architecture for Querying PDF Documents:
+PDF Text Extraction:
+
+Use libraries like PyMuPDF (fitz), pdfminer, or PyPDF2 to extract text from PDF files.
+For images or scanned PDFs, integrate OCR tools like Tesseract.
+Information Retrieval:
+
+Implement a semantic search feature using tools like FAISS (Facebook AI Similarity Search) or Haystack by deepset, which can index and retrieve information based on user queries.
+For NLP tasks, use pretrained models like BERT or GPT (via Hugging Face Transformers) to understand and respond to queries based on the context of the document.
+
+
+History Tracking:
+
+Use a database or even JSON files to store the history of interactions (which PDFs were queried, which sections were accessed, etc.).
+Implement session management to ensure users can pick up their queries where they left off.
+
+
+User Interface:
+
+Consider using a web interface with a framework like Flask or Streamlit, where users can upload PDFs and interact with the chatbot in real-time.
+Optionally, integrate the chatbot with platforms like Slack or Telegram.
+
