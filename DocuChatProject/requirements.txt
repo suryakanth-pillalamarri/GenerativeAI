@@ -1,0 +1,12 @@
+langchain
+python-dotenv
+langchain_community
+streamlit
+beautifulsoup4
+langchain_ollama
+langchain_groq
+langchain_core
+faiss-cpu
+chromadb
+redis
+pinecone
