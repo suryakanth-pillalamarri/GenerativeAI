@@ -17,3 +17,8 @@ class Helper:
             return 0
         avg_len = sum(len(sentence) for sentence in sentences) / len(sentences)
         return avg_len
+    
+    
+    
+    
+

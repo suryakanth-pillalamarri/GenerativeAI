@@ -9,5 +9,6 @@ langchain_core
 faiss-cpu
 chromadb
 redis
-pinecone
+pinecone-client
 requests
+tqdm
